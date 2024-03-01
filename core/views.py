@@ -1,10 +1,15 @@
 from django.shortcuts import render
-# from project.celery import add
-from core.tasks import add
-# Create your views here.
-
+from core.tasks import add  # Adjust import path as needed
+from celery.result import AsyncResult
 
 def home(request):
-    x = add.delay(5,10)
+    # Start the Celery task asynchronously
+    task = add.delay(5, 10)
+    return render(request, 'index.html', {'task_id': task})
 
-    return render(request,'index.html',{'x':x})
+def result(request, task_id): 
+    # Retrieve the result of the Celery task using the task_id
+    result = AsyncResult(task_id)
+
+    return render(request, 'result.html', {'result': result})
+   

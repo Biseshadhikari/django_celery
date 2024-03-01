@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Result</title>
+</head>
+<body>
+    <h1>Task Result</h1>
+    {% if result.id %}
+        <p><strong>Task ID:</strong> {{ result.id }}</p>
+        <p><strong>Task State:</strong> {{ result.state }}</p>
+        {% if result.state == 'SUCCESS' %}
+            <p><strong>Result:</strong> {{ result.result }}</p>
+        {% elif result.state == 'FAILURE' %}
+            <p><strong>Error Message:</strong> {{ result.traceback }}</p>
+        {% else %}
+            <p><em>Task is still in progress...</em></p>
+        {% endif %}
+    {% else %}
+        <p><em>No task result available.</em></p>
+    {% endif %}
+</body>
+</html>
