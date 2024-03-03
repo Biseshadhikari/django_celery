@@ -16,3 +16,12 @@ app.autodiscover_tasks()
 def add(x,y):
     sleep(5)
     return x+y
+
+app.conf.beat_schedule = { 
+    'printId': { 
+        'task':'core.tasks.printId',
+        'schedule':5,
+        'args':('1111',)
+
+    }
+}
