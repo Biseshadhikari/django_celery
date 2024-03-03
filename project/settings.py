@@ -137,3 +137,17 @@ CHANNEL_LAYERS = {
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_RESULT_EXTENDED = True
+
+
+
+
+##Method 1
+
+CELERY_BEAT_SCHEDULE = { 
+    'printId': { 
+        'task':'core.tasks.printId',
+        'schedule':5,
+        'args':('1111',)
+
+    }
+}

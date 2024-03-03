@@ -5,3 +5,11 @@ from time import sleep
 def add(x,y):
     sleep(5)
     return x+y
+
+
+
+
+@shared_task
+def printId(id): 
+    print(id)
+    return id
